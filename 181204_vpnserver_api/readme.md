@@ -1838,8 +1838,8 @@ Create New Cascade Connection. Use this to create a new Cascade Connection on th
     "policy:DHCPFilter_bool": false,
     "policy:DHCPNoServer_bool": false,
     "policy:DHCPForce_bool": false,
-    "policy:CheckMac_bool": false,
-    "policy:CheckIP_bool": false,
+    "SecPol_CheckMac_bool": false,
+    "SecPol_CheckIP_bool": false,
     "policy:ArpDhcpOnly_bool": false,
     "policy:PrivacyFilter_bool": false,
     "policy:NoServer_bool": false,
@@ -1849,10 +1849,10 @@ Create New Cascade Connection. Use this to create a new Cascade Connection on th
     "policy:MaxUpload_u32": 0,
     "policy:MaxDownload_u32": 0,
     "policy:RSandRAFilter_bool": false,
-    "policy:RAFilter_bool": false,
+    "SecPol_RAFilter_bool": false,
     "policy:DHCPv6Filter_bool": false,
     "policy:DHCPv6NoServer_bool": false,
-    "policy:CheckIPv6_bool": false,
+    "SecPol_CheckIPv6_bool": false,
     "policy:NoServerV6_bool": false,
     "policy:MaxIPv6_u32": 0,
     "policy:FilterIPv4_bool": false,
@@ -1902,8 +1902,8 @@ Create New Cascade Connection. Use this to create a new Cascade Connection on th
     "policy:DHCPFilter_bool": false,
     "policy:DHCPNoServer_bool": false,
     "policy:DHCPForce_bool": false,
-    "policy:CheckMac_bool": false,
-    "policy:CheckIP_bool": false,
+    "SecPol_CheckMac_bool": false,
+    "SecPol_CheckIP_bool": false,
     "policy:ArpDhcpOnly_bool": false,
     "policy:PrivacyFilter_bool": false,
     "policy:NoServer_bool": false,
@@ -1913,10 +1913,10 @@ Create New Cascade Connection. Use this to create a new Cascade Connection on th
     "policy:MaxUpload_u32": 0,
     "policy:MaxDownload_u32": 0,
     "policy:RSandRAFilter_bool": false,
-    "policy:RAFilter_bool": false,
+    "SecPol_RAFilter_bool": false,
     "policy:DHCPv6Filter_bool": false,
     "policy:DHCPv6NoServer_bool": false,
-    "policy:CheckIPv6_bool": false,
+    "SecPol_CheckIPv6_bool": false,
     "policy:NoServerV6_bool": false,
     "policy:MaxIPv6_u32": 0,
     "policy:FilterIPv4_bool": false,
@@ -1961,31 +1961,31 @@ Name | Type | Descrption
 `PlainPassword_str` | `string` (ASCII) | Plaintext Password. Valid only if ClientAuth_AuthType_u32 == PlainPassword (2).
 `ClientX_bin` | `string` (Base64 binary) | Client certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
 `ClientK_bin` | `string` (Base64 binary) | Client private key of the certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`SecPol_CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
+`SecPol_CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`SecPol_RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`SecPol_CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -2042,8 +2042,8 @@ Get the Cascade Connection Setting. Use this to get the Connection Setting of a 
     "policy:DHCPFilter_bool": false,
     "policy:DHCPNoServer_bool": false,
     "policy:DHCPForce_bool": false,
-    "policy:CheckMac_bool": false,
-    "policy:CheckIP_bool": false,
+    "SecPol_CheckMac_bool": false,
+    "SecPol_CheckIP_bool": false,
     "policy:ArpDhcpOnly_bool": false,
     "policy:PrivacyFilter_bool": false,
     "policy:NoServer_bool": false,
@@ -2053,10 +2053,10 @@ Get the Cascade Connection Setting. Use this to get the Connection Setting of a 
     "policy:MaxUpload_u32": 0,
     "policy:MaxDownload_u32": 0,
     "policy:RSandRAFilter_bool": false,
-    "policy:RAFilter_bool": false,
+    "SecPol_RAFilter_bool": false,
     "policy:DHCPv6Filter_bool": false,
     "policy:DHCPv6NoServer_bool": false,
-    "policy:CheckIPv6_bool": false,
+    "SecPol_CheckIPv6_bool": false,
     "policy:NoServerV6_bool": false,
     "policy:MaxIPv6_u32": 0,
     "policy:FilterIPv4_bool": false,
@@ -2101,31 +2101,31 @@ Name | Type | Descrption
 `PlainPassword_str` | `string` (ASCII) | Plaintext Password. Valid only if ClientAuth_AuthType_u32 == PlainPassword (2).
 `ClientX_bin` | `string` (Base64 binary) | Client certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
 `ClientK_bin` | `string` (Base64 binary) | Client private key of the certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`SecPol_CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
+`SecPol_CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`SecPol_RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`SecPol_CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -2161,8 +2161,8 @@ Change Existing Cascade Connection. Use this to alter the setting of an existing
     "policy:DHCPFilter_bool": false,
     "policy:DHCPNoServer_bool": false,
     "policy:DHCPForce_bool": false,
-    "policy:CheckMac_bool": false,
-    "policy:CheckIP_bool": false,
+    "SecPol_CheckMac_bool": false,
+    "SecPol_CheckIP_bool": false,
     "policy:ArpDhcpOnly_bool": false,
     "policy:PrivacyFilter_bool": false,
     "policy:NoServer_bool": false,
@@ -2172,10 +2172,10 @@ Change Existing Cascade Connection. Use this to alter the setting of an existing
     "policy:MaxUpload_u32": 0,
     "policy:MaxDownload_u32": 0,
     "policy:RSandRAFilter_bool": false,
-    "policy:RAFilter_bool": false,
+    "SecPol_RAFilter_bool": false,
     "policy:DHCPv6Filter_bool": false,
     "policy:DHCPv6NoServer_bool": false,
-    "policy:CheckIPv6_bool": false,
+    "SecPol_CheckIPv6_bool": false,
     "policy:NoServerV6_bool": false,
     "policy:MaxIPv6_u32": 0,
     "policy:FilterIPv4_bool": false,
@@ -2225,8 +2225,8 @@ Change Existing Cascade Connection. Use this to alter the setting of an existing
     "policy:DHCPFilter_bool": false,
     "policy:DHCPNoServer_bool": false,
     "policy:DHCPForce_bool": false,
-    "policy:CheckMac_bool": false,
-    "policy:CheckIP_bool": false,
+    "SecPol_CheckMac_bool": false,
+    "SecPol_CheckIP_bool": false,
     "policy:ArpDhcpOnly_bool": false,
     "policy:PrivacyFilter_bool": false,
     "policy:NoServer_bool": false,
@@ -2236,10 +2236,10 @@ Change Existing Cascade Connection. Use this to alter the setting of an existing
     "policy:MaxUpload_u32": 0,
     "policy:MaxDownload_u32": 0,
     "policy:RSandRAFilter_bool": false,
-    "policy:RAFilter_bool": false,
+    "SecPol_RAFilter_bool": false,
     "policy:DHCPv6Filter_bool": false,
     "policy:DHCPv6NoServer_bool": false,
-    "policy:CheckIPv6_bool": false,
+    "SecPol_CheckIPv6_bool": false,
     "policy:NoServerV6_bool": false,
     "policy:MaxIPv6_u32": 0,
     "policy:FilterIPv4_bool": false,
@@ -2284,31 +2284,31 @@ Name | Type | Descrption
 `PlainPassword_str` | `string` (ASCII) | Plaintext Password. Valid only if ClientAuth_AuthType_u32 == PlainPassword (2).
 `ClientX_bin` | `string` (Base64 binary) | Client certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
 `ClientK_bin` | `string` (Base64 binary) | Client private key of the certificate. Valid only if ClientAuth_AuthType_u32 == Cert (3).
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`SecPol_CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
+`SecPol_CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`SecPol_RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`SecPol_CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -3442,44 +3442,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -3653,44 +3653,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -3813,44 +3813,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -4145,44 +4145,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -4323,44 +4323,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -4459,44 +4459,44 @@ Name | Type | Descrption
 `Send.UnicastBytes_u64` | `number` (uint64) | Unicast bytes (Send)
 `Send.UnicastCount_u64` | `number` (uint64) | Unicast bytes (Send)
 `UsePolicy_bool` | `boolean` | The flag whether to use security policy
-`policy:Access_bool` | `boolean` | Security policy: Grant access
-`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv4)
-`policy:DHCPNoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv4)
-`policy:DHCPForce_bool` | `boolean` | Security policy: Force DHCP-assigned IP address (IPv4)
-`policy:NoBridge_bool` | `boolean` | Security policy: Prohibit the bridge behavior
-`policy:NoRouting_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv4)
-`policy:CheckMac_bool` | `boolean` | Security policy: Prohibit the duplicate MAC address
-`policy:CheckIP_bool` | `boolean` | Security policy: Prohibit a duplicate IP address (IPv4)
-`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Prohibit the broadcast other than ARP, DHCP, ICMPv6
-`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy filter mode
-`policy:NoServer_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv4)
-`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Not to limit the number of broadcast
-`policy:MonitorPort_bool` | `boolean` | Security policy: Allow monitoring mode
-`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum number of TCP connections
-`policy:TimeOut_u32` | `number` (uint32) | Security policy: Communication time-out period
-`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum number of MAC address
-`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv4)
-`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload bandwidth
-`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download bandwidth
-`policy:FixPassword_bool` | `boolean` | Security policy: User can not change password
-`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Multiple logins limit
-`policy:NoQoS_bool` | `boolean` | Security policy: Prohibit the use of VoIP / QoS features
-`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter the Router Solicitation / Advertising packet (IPv6)
-`policy:RAFilter_bool` | `boolean` | Security policy: Filter the router advertisement packet (IPv6)
-`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP packets (IPv6)
-`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Prohibit the behavior of the DHCP server (IPv6)
-`policy:NoRoutingV6_bool` | `boolean` | Security policy: Prohibit the router behavior (IPv6)
-`policy:CheckIPv6_bool` | `boolean` | Security policy: Prohibit the duplicate IP address (IPv6)
-`policy:NoServerV6_bool` | `boolean` | Security policy: Prohibit to operate as a TCP/IP server (IPv6)
-`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum number of IP address (IPv6)
-`policy:NoSavePassword_bool` | `boolean` | Security policy: Prohibit to save the password in the VPN Client
-`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: Disconnect the VPN Client automatically at a certain period of time
-`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter all IPv4 packets
-`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter all IPv6 packets
-`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter all non-IP packets
-`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement
-`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: Delete the default router specification from the IPv6 router advertisement (Enable IPv6 connection)
-`policy:VLanId_u32` | `number` (uint32) | Security policy: Specify the VLAN ID
+`policy:Access_bool` | `boolean` | Security policy: Allow Access. The users, which this policy value is true, have permission to make VPN connection to VPN Server.
+`policy:DHCPFilter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv4). All IPv4 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPNoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv4). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv4 addresses to DHCP clients.
+`policy:DHCPForce_bool` | `boolean` | Security policy: Enforce DHCP Allocated IP Addresses (IPv4). Computers in sessions that have this policy setting will only be able to use IPv4 addresses allocated by a DHCP server on the virtual network side.
+`policy:NoBridge_bool` | `boolean` | Security policy: Deny Bridge Operation. Bridge-mode connections are denied for user sessions that have this policy setting. Even in cases when the Ethernet Bridge is configured in the client side, communication will not be possible.
+`policy:NoRouting_bool` | `boolean` | Security policy: Deny Routing Operation (IPv4). IPv4 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckMac_bool` | `boolean` | Security policy: Deny MAC Addresses Duplication. The use of duplicating MAC addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:CheckIP_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv4). The use of duplicating IPv4 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:ArpDhcpOnly_bool` | `boolean` | Security policy: Deny Non-ARP / Non-DHCP / Non-ICMPv6 broadcasts. The sending or receiving of broadcast packets that are not ARP protocol, DHCP protocol, nor ICMPv6 on the virtual network will not be allowed for sessions with this policy setting.
+`policy:PrivacyFilter_bool` | `boolean` | Security policy: Privacy Filter Mode. All direct communication between sessions with the privacy filter mode policy setting will be filtered.
+`policy:NoServer_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv4). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv4.
+`policy:NoBroadcastLimiter_bool` | `boolean` | Security policy: Unlimited Number of Broadcasts. If a computer of a session with this policy setting sends broadcast packets of a number unusually larger than what would be considered normal on the virtual network, there will be no automatic limiting.
+`policy:MonitorPort_bool` | `boolean` | Security policy: Allow Monitoring Mode. Users with this policy setting will be granted to connect to the Virtual Hub in Monitoring Mode. Sessions in Monitoring Mode are able to monitor (tap) all packets flowing through the Virtual Hub.
+`policy:MaxConnection_u32` | `number` (uint32) | Security policy: Maximum Number of TCP Connections. For sessions with this policy setting, this sets the maximum number of physical TCP connections consists in a physical VPN session.
+`policy:TimeOut_u32` | `number` (uint32) | Security policy: Time-out Period. For sessions with this policy setting, this sets, in seconds, the time-out period to wait before disconnecting a session when communication trouble occurs between the VPN Client / VPN Server.
+`policy:MaxMac_u32` | `number` (uint32) | Security policy: Maximum Number of MAC Addresses. For sessions with this policy setting, this limits the number of MAC addresses per session.
+`policy:MaxIP_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv4). For sessions with this policy setting, this specifies the number of IPv4 addresses that can be registered for a single session.
+`policy:MaxUpload_u32` | `number` (uint32) | Security policy: Upload Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the inwards direction from outside to inside the Virtual Hub.
+`policy:MaxDownload_u32` | `number` (uint32) | Security policy: Download Bandwidth. For sessions with this policy setting, this limits the traffic bandwidth that is in the outwards direction from inside the Virtual Hub to outside the Virtual Hub.
+`policy:FixPassword_bool` | `boolean` | Security policy: Deny Changing Password. The users which use password authentication with this policy setting are not allowed to change their own password from the VPN Client Manager or similar.
+`policy:MultiLogins_u32` | `number` (uint32) | Security policy: Maximum Number of Multiple Logins. Users with this policy setting are unable to have more than this number of concurrent logins. Bridge Mode sessions are not subjects to this policy.
+`policy:NoQoS_bool` | `boolean` | Security policy: Deny VoIP / QoS Function. Users with this security policy are unable to use VoIP / QoS functions in VPN connection sessions.
+`policy:RSandRAFilter_bool` | `boolean` | Security policy: Filter RS / RA Packets (IPv6). All ICMPv6 packets which the message-type is 133 (Router Solicitation) or 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, an IPv6 client will be unable to use IPv6 address prefix auto detection and IPv6 default gateway auto detection.
+`policy:RAFilter_bool` | `boolean` | Security policy: Filter RA Packets (IPv6). All ICMPv6 packets which the message-type is 134 (Router Advertisement) in sessions defined this policy will be filtered. As a result, a malicious users will be unable to spread illegal IPv6 prefix or default gateway advertisements on the network.
+`policy:DHCPv6Filter_bool` | `boolean` | Security policy: Filter DHCP Packets (IPv6). All IPv6 DHCP packets in sessions defined this policy will be filtered.
+`policy:DHCPv6NoServer_bool` | `boolean` | Security policy: Disallow DHCP Server Operation (IPv6). Computers connected to sessions that have this policy setting will not be allowed to become a DHCP server and distribute IPv6 addresses to DHCP clients.
+`policy:NoRoutingV6_bool` | `boolean` | Security policy: Deny Routing Operation (IPv6). IPv6 routing will be denied for sessions that have this policy setting. Even in the case where the IP router is operating on the user client side, communication will not be possible.
+`policy:CheckIPv6_bool` | `boolean` | Security policy: Deny IP Address Duplication (IPv6). The use of duplicating IPv6 addresses that are in use by computers of different sessions cannot be used by sessions with this policy setting.
+`policy:NoServerV6_bool` | `boolean` | Security policy: Deny Operation as TCP/IP Server (IPv6). Computers of sessions with this policy setting can't listen and accept TCP/IP connections in IPv6.
+`policy:MaxIPv6_u32` | `number` (uint32) | Security policy: Maximum Number of IP Addresses (IPv6). For sessions with this policy setting, this specifies the number of IPv6 addresses that can be registered for a single session.
+`policy:NoSavePassword_bool` | `boolean` | Security policy: Disallow Password Save in VPN Client. For users with this policy setting, when the user is using *standard* password authentication, the user will be unable to save the password in VPN Client. The user will be required to input passwords for every time to connect a VPN. This will improve the security. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:AutoDisconnect_u32` | `number` (uint32) | Security policy: VPN Client Automatic Disconnect. For users with this policy setting, a user's VPN session will be disconnected automatically after the specific period will elapse. In this case no automatic re-connection will be performed. This can prevent a lot of inactive VPN Sessions. If this policy is enabled, VPN Client Version 2.0 will be denied to access.
+`policy:FilterIPv4_bool` | `boolean` | Security policy: Filter All IPv4 Packets. All IPv4 and ARP packets in sessions defined this policy will be filtered.
+`policy:FilterIPv6_bool` | `boolean` | Security policy: Filter All IPv6 Packets. All IPv6 packets in sessions defined this policy will be filtered.
+`policy:FilterNonIP_bool` | `boolean` | Security policy: Filter All Non-IP Packets. All non-IP packets in sessions defined this policy will be filtered. "Non-IP packet" mean a packet which is not IPv4, ARP nor IPv6. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets.
+`policy:NoIPv6DefaultRouterInRA_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA. In all VPN Sessions defines this policy, any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:NoIPv6DefaultRouterInRAWhenIPv6_bool` | `boolean` | Security policy: No Default-Router on IPv6 RA (physical IPv6). In all VPN Sessions defines this policy (only when the physical communication protocol between VPN Client / VPN Bridge and VPN Server is IPv6), any IPv6 RA (Router Advertisement) packet with non-zero value in the router-lifetime will set to zero-value. This is effective to avoid the horrible behavior from the IPv6 routing confusion which is caused by the VPN client's attempts to use the remote-side IPv6 router as its local IPv6 router.
+`policy:VLanId_u32` | `number` (uint32) | Security policy: VLAN ID (IEEE802.1Q). You can specify the VLAN ID on the security policy. All VPN Sessions defines this policy, all Ethernet packets toward the Virtual Hub from the user will be inserted a VLAN tag (IEEE 802.1Q) with the VLAN ID. The user can also receive only packets with a VLAN tag which has the same VLAN ID. (Receiving process removes the VLAN tag automatically.) Any Ethernet packets with any other VLAN IDs or non-VLAN packets will not be received. All VPN Sessions without this policy definition can send / receive any kinds of Ethernet packets regardless of VLAN tags, and VLAN tags are not inserted or removed automatically. Any tagged-VLAN packets via the Virtual Hub will be regarded as non-IP packets. Therefore, tagged-VLAN packets are not subjects for IPv4 / IPv6 security policies, access lists nor other IPv4 / IPv6 specific deep processing.
 `policy:Ver3_bool` | `boolean` | Security policy: Whether version 3.0 (must be true)
 
 ***
@@ -8377,6 +8377,6 @@ Name | Type | Descrption
 `EnableL2TP_bool` | `boolean` | Enable the L2TP VPN function
 
 ***
-Automatically generated at 2018-12-04 23:09:15 by vpnserver-jsonrpc-codegen.  
+Automatically generated at 2018-12-04 23:31:45 by vpnserver-jsonrpc-codegen.  
 Copyright (c) 2014 - 2018 [SoftEther VPN Project](https://www.softether.org/) under the Apache License 2.0.  
 
