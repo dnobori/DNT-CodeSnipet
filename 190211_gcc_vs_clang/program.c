@@ -63,9 +63,9 @@ typedef struct VCpuState
 	volatile uint ExceptionAddress;
 } VCpuState;
 
+UINT g_count = 0;
 
 #include "GeneratedCode.c"
-
 
 
 UINT64 Tick64()
@@ -97,8 +97,6 @@ int main()
 
 	for (uint i = 0;i < count;i++)
 	{
-        memset(memory->ContiguousMemory, 0, 0x8000000 + 0x100000 - 0x500000);
-        state->Eax = state->Ebx = state->Ecx = state->Edx = state->Esi = state->Edi = state->Ebp = state->Esp = 0;
 		state->Esp = stackPtr;
 		state->Esp -= 4;
 
@@ -132,7 +130,7 @@ int main()
 	ulong tick_end = Tick64();
 
 	printf("time = %u\n", (UINT)((tick_end - tick_start) / count));
-	printf("count = %u\n", count);
+	printf("g_count = %u\n", g_count);
 
 	return 0;
 }
