@@ -97,6 +97,7 @@ int main()
 
 	for (uint i = 0;i < count;i++)
 	{
+        memset(memory->ContiguousMemory, 0, 0x8000000 + 0x100000 - 0x500000);
         state->Eax = state->Ebx = state->Ecx = state->Edx = state->Esi = state->Edi = state->Ebp = state->Esp = 0;
 		state->Esp = stackPtr;
 		state->Esp -= 4;
