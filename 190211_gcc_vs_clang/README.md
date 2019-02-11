@@ -42,6 +42,9 @@
 
 
 # 実験
+## 準備
+$ git clone https://github.com/dnobori/DNT-CodeSnipet.git
+$ cd DNT-CodeSnipet/190211_gcc_vs_clang/
 ## 実験 A. NO_CHECK マクロを ON (すなわち境界チェックを OFF)
 ### 結果 A-1. gcc の場合
 ```

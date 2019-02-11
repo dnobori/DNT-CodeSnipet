@@ -97,6 +97,7 @@ int main()
 
 	for (uint i = 0;i < count;i++)
 	{
+        state->Eax = state->Ebx = state->Ecx = state->Edx = state->Esi = state->Edi = state->Ebp = state->Esp = 0;
 		state->Esp = stackPtr;
 		state->Esp -= 4;
 
