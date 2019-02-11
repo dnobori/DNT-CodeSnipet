@@ -131,6 +131,7 @@ int main()
 	ulong tick_end = Tick64();
 
 	printf("time = %u\n", (UINT)((tick_end - tick_start) / count));
+	printf("count = %u\n", count);
 
 	return 0;
 }
